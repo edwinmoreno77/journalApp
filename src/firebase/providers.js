@@ -78,3 +78,19 @@ export const loginWithEmailAndPassword = async ({ email, password }) => {
 
 
 }
+
+export const logoutFirebase = async () => {
+
+    try {
+        return await FirebaseAuth.signOut();
+
+    } catch (error) {
+
+        const errorMessage = error.message;
+
+        return {
+            ok: false,
+            errorMessage
+        }
+    }
+}
