@@ -10,14 +10,19 @@ import { startGoogleSingIn, startLoginWithEmailAndPassword } from '../../store/a
 import { useSelector } from 'react-redux';
 
 
+
+const formData = {
+    email: '',
+    password: ''
+}
+
+
+
 export const LoginPage = () => {
 
     const { status, errorMessage } = useSelector(state => state.auth);
 
-    const { email, password, onInputChange, } = useForm({
-        email: '',
-        password: ''
-    });
+    const { email, password, onInputChange, } = useForm(formData);
 
     const isAuthenticated = useMemo(() => status === 'checking', [status]);
 
