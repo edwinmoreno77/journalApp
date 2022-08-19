@@ -38,6 +38,13 @@ export const NoteView = () => {
     const onSaveNote = () => {
         dispatch(startSavingNote())
     }
+
+    const onFileInputChange = ({ target }) => {
+        if (target.files === 0) return;
+
+        // dispatch(startUploadingFile(target.files));
+
+    }
     return (
         <Grid
             className='animate__animated animate__fadeIn animate__faster'
@@ -49,6 +56,12 @@ export const NoteView = () => {
                 <Typography fontSize={25} fontWeight='ligth'>{dateString}</Typography>
             </Grid>
             <Grid item >
+
+                <input
+                    multiple
+                    type="file"
+                    onChange={onFileInputChange}
+                />
                 <Button
                     disabled={isSaving}
                     onClick={onSaveNote}
