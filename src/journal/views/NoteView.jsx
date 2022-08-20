@@ -2,13 +2,13 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
-import { SaveOutlined, UploadOutlined } from '@mui/icons-material'
+import { SaveOutlined, UploadOutlined, DeleteOutlined } from '@mui/icons-material'
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 
 import { ImageGallery } from "../components";
 import { useForm } from '../../hooks/useForm';
-import { setActiveNote, startSavingNote, startUploadingFile } from '../../store/journal';
+import { setActiveNote, startDeletingNote, startSavingNote, startUploadingFile } from '../../store/journal';
 
 export const NoteView = () => {
 
@@ -30,11 +30,13 @@ export const NoteView = () => {
     }, [formState]);
 
     useEffect(() => {
+
         if (MessageSave.length > 0) {
             Swal.fire('Nota actualizada', MessageSave, 'success');
-
         }
+
     }, [MessageSave])
+
 
 
     const onSaveNote = () => {
@@ -47,6 +49,13 @@ export const NoteView = () => {
         dispatch(startUploadingFile(target.files));
 
     }
+
+    const onDelete = () => {
+
+        dispatch(startDeletingNote());
+
+    }
+
     return (
         <Grid
             className='animate__animated animate__fadeIn animate__faster'
@@ -107,6 +116,18 @@ export const NoteView = () => {
                     onChange={onInputChange}
                 />
 
+
+            </Grid>
+
+            <Grid container justifyContent="end">
+                <button
+                    onClick={onDelete}
+                    sx={{ mt: 2 }}
+                    color="error"
+                >
+                    <DeleteOutlined />
+                    Borrar
+                </button>
 
             </Grid>
             <ImageGallery images={note.imageUrls} />
