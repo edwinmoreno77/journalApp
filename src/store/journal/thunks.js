@@ -1,7 +1,7 @@
 import { collection, doc, setDoc } from 'firebase/firestore/lite';
 import { FirebaseDB } from '../../firebase/config';
 import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, setSaving, updateNote } from './journalSlice';
-import { loadNotes } from '../../helpers';
+import { fileUpload, loadNotes } from '../../helpers';
 
 
 export const startNewNote = () => {
@@ -60,4 +60,15 @@ export const startSavingNote = () => {
         dispatch(updateNote(note));
 
     }
+}
+
+export const startUploadingFile = (file = []) => {
+
+    return async (dispatch) => {
+        dispatch(setSaving());
+
+        await fileUpload(file[0]);
+
+    }
+
 }
