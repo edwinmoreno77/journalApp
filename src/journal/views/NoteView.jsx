@@ -119,15 +119,17 @@ export const NoteView = () => {
 
             </Grid>
 
-            <Grid container justifyContent="end">
-                <button
+            <Grid
+                container
+                justifyContent="end">
+                <Button
                     onClick={onDelete}
-                    sx={{ mt: 2 }}
-                    color="error"
+                    sx={{ m: 2 }}
+                    color='error'
                 >
                     <DeleteOutlined />
                     Borrar
-                </button>
+                </Button>
 
             </Grid>
             <ImageGallery images={note.imageUrls} />
