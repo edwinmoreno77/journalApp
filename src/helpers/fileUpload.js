@@ -3,7 +3,9 @@
 
 export const fileUpload = async (file) => {
 
-    if (!file) throw new Error('No se ha seleccionado ningun archivo');
+    // if (!file) throw new Error('No se ha seleccionado ningun archivo');
+    if (!file) return null;
+
     const cloudinaryURL = 'https://api.cloudinary.com/v1_1/edmo777/upload';
 
     const formData = new FormData();
@@ -23,8 +25,9 @@ export const fileUpload = async (file) => {
         return cloudinaryResp.secure_url;
 
     } catch (error) {
-        console.log(error);
-        throw new Error(error.message);
+        // console.log(error);
+        // throw new Error(error.message);
+        return null;
     }
 
 
