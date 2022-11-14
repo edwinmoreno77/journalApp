@@ -25,17 +25,16 @@ describe('fileUpload test', () => {
         // Delete image by id
         const segments = url.split('/');
         const imageId = segments[segments.length - 1].replace('.jpg', '');
-        // console.log(imageId);
         const cloudResponse = await cloudinary.api.delete_resources(['journalApp/' + imageId], {
             resource_type: 'image'
         });
-    });
+    }, 10000);
 
     test('should return null', async () => {
         const file = new File([], 'foto');
         const url = await fileUpload(file);
         expect(url).toBe(null);
-    });
+    }, 10000);
 });
 
 
