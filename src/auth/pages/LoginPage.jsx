@@ -30,7 +30,6 @@ export const LoginPage = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
         dispatch(startLoginWithEmailAndPassword({ email, password }))
     }
 
@@ -47,6 +46,7 @@ export const LoginPage = () => {
                 <Grid container>
                     <Grid item xs={12} sx={{ mt: 2 }}>
                         <TextField
+                            inputProps={{'data-testid': 'email-input'}}
                             label="Correo"
                             type='email'
                             placeholder='correo@gmail.com'
@@ -58,6 +58,7 @@ export const LoginPage = () => {
                     </Grid>
                     <Grid item xs={12} sx={{ mt: 2 }}>
                         <TextField
+                            inputProps={{ 'data-testid': 'input-password' }}
                             label="Contraseña"
                             type='password'
                             placeholder='********'
@@ -85,6 +86,7 @@ export const LoginPage = () => {
                     <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
                         <Grid item xs={12} sm={6}>
                             <Button
+                                data-testid='loginBtn'
                                 disabled={isAuthenticated}
                                 type='submit'
                                 variant="contained"
@@ -95,6 +97,7 @@ export const LoginPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Button
+                                data-testid='google-button'
                                 disabled={isAuthenticated}
                                 onClick={onGoogleLogin}
                                 variant="contained"
